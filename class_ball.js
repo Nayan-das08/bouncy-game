@@ -2,7 +2,8 @@ dir = [-1,1]
 class ball {
     constructor(x=mouseX,y=mouseY)
     {
-        this.radius  = random(20,40),
+        ball.max_radius = 40,
+        this.radius  = random(20,ball.max_radius),
         this.x       = x,
         this.y       = y,
         this.x_dir   = dir[Math.floor(random()*dir.length)],//1,
@@ -22,12 +23,12 @@ class ball {
     {
         fill(this.r, this.g, this.b)
 
-        strokeWeight(0)
-        for (var i=0; i<this.history.length; i++)
-        {
-            // point(this.history[i].x, this.history[i].y)
-            circle(this.history[i].x, this.history[i].y, map(i, 0, this.history.length, 1, this.radius)*2)
-        }
+        // strokeWeight(0)
+        // for (var i=0; i<this.history.length; i++)
+        // {
+        //     // point(this.history[i].x, this.history[i].y)
+        //     circle(this.history[i].x, this.history[i].y, map(i, 0, this.history.length, 1, this.radius)*2)
+        // }
         strokeWeight(2)
         circle(this.x, this.y, this.radius*2)
     }

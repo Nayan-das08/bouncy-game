@@ -5,15 +5,13 @@ function setup()
     createCanvas(Width, Height)
     // createCanvas(1080,1920)
     balls = [] 
-    balls.push(new ball(width/2, height/2))
+    // for (var i=1; i<=10; i++)
+        balls.push(new ball(width/2, height/2))
 }
 
 function draw() 
 {
-    // image(trail_canvas,0,0)
     background(100,200,200)
-    // image(trail_canvas,0,0)
-    
 
     for (var i=0; i<balls.length; i++)
     {
@@ -25,17 +23,32 @@ function draw()
 
 // -----------------------------------
 
+function mousePressed()
+{
+    if  (isLooping() && 
+        (mouseX > ball.max_radius) &&
+        (mouseX < width-ball.max_radius) &&
+        (mouseY > ball.max_radius) &&
+        (mouseY < height-ball.max_radius))
+        generate()
+    else
+        loop()
+}
+
 function showText()
 {
     textFont(myfont)
     textAlign(CENTER, TOP)
     fill(0)
-    // text(`Tap to generate balls`, width/2, 10)
-    // text(`Double tap to pause`, width/2, 10)
     textSize(35)
-    text(`Tap anywhere to play`, width/2, height/2-20)
-    textSize(25)
-    text(`Refresh to restart`, width/2, height/2+20)
+    // text(`Tap anywhere to play`, width/2, height/2-20)
+    if (balls.length == 1)
+        text(`${balls.length} ball`, width/2, height/2-20)
+    else
+        text(`${balls.length} balls`, width/2, height/2-20)
+    textSize(15)
+    text(`tap to create balls`, width/2, height/2+20)
+    text(`Refresh to restart`, width/2, height/2+40)
 }
 
 function generate()
@@ -43,18 +56,11 @@ function generate()
     balls.push(new ball())
 }
 
-function mousePressed()
-{
-    if (isLooping())
-        generate()
-    else
-        loop()
-}
 
-function doubleClicked()
-{
-    noLoop()
-}
+// function doubleClicked()
+// {
+//     noLoop()
+// }
 
 function preload()
 {
